@@ -8,4 +8,11 @@ use Illuminate\Database\Eloquent\Model;
 class Surat extends Model
 {
     use HasFactory;
+
+    protected $fillable = ['judul', 'file_path', 'kategori_id'];
+
+    public function kategori()
+    {
+        return $this->belongsTo(Kategori::class);
+    }
 }
