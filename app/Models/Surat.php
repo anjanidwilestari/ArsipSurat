@@ -9,7 +9,7 @@ class Surat extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['judul', 'file_path', 'kategori_id'];
+    protected $fillable = ['nomor_surat', 'judul', 'file', 'kategori_id'];
 
     public function kategori()
     {

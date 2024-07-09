@@ -1,5 +1,7 @@
 <?php
 
+// app/Http/Controllers/KategoriController.php
+
 namespace App\Http\Controllers;
 
 use App\Models\Kategori;
@@ -15,14 +17,22 @@ class KategoriController extends Controller
 
     public function create()
     {
-        return view('kategoris.create');
+        $nextId = Kategori::max('id') + 1; // Mengambil ID terakhir dan menambahkan 1
+
+        return view('kategoris.create', compact('nextId'));
     }
 
     public function store(Request $request)
     {
-        $request->validate(['nama' => 'required']);
-        Kategori::create(['nama' => $request->nama]);
-        return redirect()->route('kategoris.index')->with('success', 'Kategori berhasil ditambahkan');
+        $request->validate([
+            'nama' => 'required|string|max:255',
+            'keterangan' => 'nullable|string',
+        ]);
+
+        Kategori::create($request->all());
+
+        return redirect()->route('kategoris.index')
+                         ->with('success', 'Kategori berhasil ditambahkan.');
     }
 
     public function edit(Kategori $kategori)
@@ -32,14 +42,22 @@ class KategoriController extends Controller
 
     public function update(Request $request, Kategori $kategori)
     {
-        $request->validate(['nama' => 'required']);
-        $kategori->update(['nama' => $request->nama]);
-        return redirect()->route('kategoris.index')->with('success', 'Kategori berhasil diupdate');
+        $request->validate([
+            'nama' => 'required|string|max:255',
+            'keterangan' => 'nullable|string',
+        ]);
+
+        $kategori->update($request->all());
+
+        return redirect()->route('kategoris.index')
+                         ->with('success', 'Kategori berhasil diperbarui.');
     }
 
     public function destroy(Kategori $kategori)
     {
         $kategori->delete();
-        return redirect()->route('kategoris.index')->with('success', 'Kategori berhasil dihapus');
+
+        return redirect()->route('kategoris.index')
+                         ->with('success', 'Kategori berhasil dihapus.');
     }
 }

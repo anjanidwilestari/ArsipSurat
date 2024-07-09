@@ -7,6 +7,10 @@
         <form action="{{ route('surats.store') }}" method="POST" enctype="multipart/form-data">
             @csrf
             <div class="form-group">
+                <label for="nomor_surat">Nomor Surat</label>
+                <input type="text" name="nomor_surat" class="form-control" required>
+            </div>
+            <div class="form-group">
                 <label for="judul">Judul Surat</label>
                 <input type="text" name="judul" class="form-control" required>
             </div>

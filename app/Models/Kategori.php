@@ -9,7 +9,10 @@ class Kategori extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['nama'];
+    protected $fillable = [
+        'nama',
+        'keterangan',
+    ];
 
     public function surats()
     {

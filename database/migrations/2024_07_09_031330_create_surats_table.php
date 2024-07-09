@@ -13,8 +13,9 @@ return new class extends Migration
 {
     Schema::create('surats', function (Blueprint $table) {
         $table->id();
+        $table->string('nomor_surat');
         $table->string('judul');
-        $table->string('file_path');
+        $table->string('file');
         $table->foreignId('kategori_id')->constrained();
         $table->timestamps();
     });
