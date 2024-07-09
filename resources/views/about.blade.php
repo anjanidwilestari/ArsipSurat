@@ -1,21 +1,14 @@
-<!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+// resources/views/about.blade.php
+@extends('layouts.app')
 
-        <title>Halaman About</title>
-
-        <!-- Fonts -->
-        <link rel="preconnect" href="https://fonts.bunny.net">
-        <link href="https://fonts.bunny.net/css?family=figtree:400,600&display=swap" rel="stylesheet" />
-
-        <!-- Styles -->
-        <link rel="stylesheet" href="css/style.css">
-    </head>
-
-    <body class="font-sans antialiased dark:bg-black dark:text-white/50">
-        <h1>Halaman About</h1>
-        <script src="js/script.js"></script>
-    </body>
-</html>
+@section('content')
+<div class="row mt-5">
+    <div class="col-md-12 text-center">
+        <h2>About</h2>
+        <img src="img\anjani.jpg" alt="Foto Anda" class="img-fluid rounded-circle mb-3" width="150" height="150">
+        <p>Nama: Anjani Dwilestari</p>
+        <p>NIM: 2041720180</p>
+        <p>Tanggal Pembuatan: {{ date('d M Y') }}</p>
+    </div>
+</div>
+@endsection
