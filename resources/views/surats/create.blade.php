@@ -24,7 +24,7 @@
             </div>
             <div class="form-group">
                 <label for="file">File Surat (PDF)</label>
-                <input type="file" name="file" class="form-control-file" required>
+                <input type="file" name="file" class="form-control-file" accept=".pdf" required>
             </div>
             <button type="submit" class="btn btn-success">Simpan</button>
             <a href="{{ route('surats.index') }}" class="btn btn-secondary">Kembali</a>

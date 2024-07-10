@@ -9,9 +9,13 @@ use Illuminate\Http\Request;
 
 class KategoriController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $kategoris = Kategori::all();
+        $search = $request->get('search');
+        $kategoris = Kategori::when($search, function ($query, $search) {
+            return $query->where('nama', 'like', "%{$search}%");
+        })->get();
+
         return view('kategoris.index', compact('kategoris'));
     }
 
@@ -55,9 +59,13 @@ class KategoriController extends Controller
 
     public function destroy(Kategori $kategori)
     {
-        $kategori->delete();
-
-        return redirect()->route('kategoris.index')
-                         ->with('success', 'Kategori berhasil dihapus.');
+        try {
+            $kategori->delete();
+            return redirect()->route('kategoris.index')
+                             ->with('success', 'Kategori berhasil dihapus.');
+        } catch (\Exception $e) {
+            return redirect()->route('kategoris.index')
+                             ->with('error', 'Kategori tidak dapat dihapus karena masih memiliki surat terkait.');
+        }
     }
 }
